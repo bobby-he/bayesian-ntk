@@ -40,7 +40,7 @@ def train_model(
     regularisation = regularisation_fn(train_method, params_0, parameterization, W_std, b_std)
 
     train_size = len(train.inputs)
-    loss = lambda params, x, y: pre_reg_loss(params, x, y) + 0.5 * noise_scale * regularisation(params) / train_size
+    loss = lambda params, x, y: pre_reg_loss(params, x, y) + 0.5 * noise_scale**2 * regularisation(params) / train_size
     loss = jit(loss)
     grad_loss = jit(lambda state, x, y: grad(loss)(get_params(state), x, y))
 

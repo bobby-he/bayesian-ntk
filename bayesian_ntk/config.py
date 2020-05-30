@@ -19,7 +19,7 @@ _model_configs = {
 _train_configs = {
     "default": dict(
         learning_rate = 1e-3,
-        training_steps = 5,
+        training_steps = 50000,
         noise_scale = NOISE_SCALE,
         **_model_configs["default"]
     )
