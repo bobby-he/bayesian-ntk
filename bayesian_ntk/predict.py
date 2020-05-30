@@ -121,7 +121,7 @@ def _arr_is_on_cpu(x):
 def _is_on_cpu(x):
   return tree_all(tree_map(_arr_is_on_cpu, x))
 
-def gp_inference_copy(kernel_fn,
+def gp_inference(kernel_fn,
                  x_train,
                  y_train,
                  x_test,
@@ -155,13 +155,13 @@ def gp_inference_copy(kernel_fn,
   if get is None:
     get = ('nngp', 'ntk')
   kdd, ktd, ktt = _get_matrices(kernel_fn, x_train, x_test, get, compute_cov)
-  gp_inference_copy_mat = (_gp_inference_copy_mat_jit_cpu if _is_on_cpu(kdd) else
-                      _gp_inference_copy_mat_jit)
-  return gp_inference_copy_mat(kdd, ktd, ktt, y_train, get, diag_reg)
+  gp_inference_mat = (_gp_inference_mat_jit_cpu if _is_on_cpu(kdd) else
+                      _gp_inference_mat_jit)
+  return gp_inference_mat(kdd, ktd, ktt, y_train, get, diag_reg)
 
 # This has been modified
 @get_namedtuple('Gaussians')
-def _gp_inference_copy_mat(kdd,
+def _gp_inference_mat(kdd,
                       ktd,
                       ktt,
                       y_train,
@@ -203,7 +203,7 @@ def _gp_inference_copy_mat(kdd,
 
   return out
 
-_gp_inference_copy_mat_jit = jit(_gp_inference_copy_mat, static_argnums=(4,))
+_gp_inference_mat_jit = jit(_gp_inference_mat, static_argnums=(4,))
 
-_gp_inference_copy_mat_jit_cpu = jit(_gp_inference_copy_mat, static_argnums=(4,),
+_gp_inference_mat_jit_cpu = jit(_gp_inference_mat, static_argnums=(4,),
                                 backend='cpu')
