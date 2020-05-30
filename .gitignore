@@ -1,4 +1,10 @@
 **/__pycache__/
 **/.ipynb_checkpoints
 
+# venv
 bntk-env/
+
+# distribution/packaging
+build/
+dist/
+*.egg-info/
