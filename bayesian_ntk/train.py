@@ -1,10 +1,10 @@
 # imports
 import jax.numpy as np
-from train_util import new_predict_fn, regularisation_fn
 from jax import random
 from jax import jit, grad
 from jax.experimental import optimizers
-from models import homoscedastic_model
+from .models import homoscedastic_model
+from .train_util import new_predict_fn, regularisation_fn
 
 def train_model(
     key,

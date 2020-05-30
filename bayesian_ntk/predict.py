@@ -15,7 +15,7 @@ from jax.tree_util import tree_map
 from neural_tangents.utils.utils import canonicalize_get
 from neural_tangents.utils.utils import get_namedtuple
 
-from config import Gaussian
+from .config import Gaussian
 
 def _get_matrices(kernel_fn, x_train, x_test, get, compute_cov):
   get = _get_dependency(get, compute_cov)
