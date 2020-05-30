@@ -46,8 +46,6 @@ def train_model(
 
     for i in range(training_steps):
         opt_state = opt_update(i, grad_loss(opt_state, *train), opt_state)
-        if i % 1000 ==0:
-            print('step ', i)
 
     final_params = get_params(opt_state)
     fx_final_test = apply_new_fn(final_params, test.inputs)
