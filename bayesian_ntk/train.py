@@ -11,6 +11,7 @@ def train_model(
     train_method,
     train,
     test,
+    activation,
     parameterization,
     learning_rate,
     training_steps,
@@ -23,7 +24,7 @@ def train_model(
 
     train_losses = []
     test_losses = []
-    init_fn, apply_fn, _ = homoscedastic_model(W_std, b_std, width, depth, parameterization)
+    init_fn, apply_fn, _ = homoscedastic_model(W_std, b_std, width, depth, activation, parameterization)
     opt_init, opt_update, get_params = optimizers.sgd(learning_rate)
     opt_update = jit(opt_update)
 
