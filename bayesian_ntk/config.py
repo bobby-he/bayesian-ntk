@@ -13,6 +13,7 @@ _model_configs = {
         b_std = 0.05,
         width = 512,
         depth = 2,
+        activation = 'erf'
     )
 }
 
