@@ -3,6 +3,7 @@
 
 # venv
 bntk-env/
+venv/
 
 # distribution/packaging
 build/

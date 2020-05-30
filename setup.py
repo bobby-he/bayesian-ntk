@@ -11,7 +11,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/bobby-he/bayesian-ntk",
-    python_requires='>=3.7',
+    python_requires='>=3.6',
     packages=setuptools.find_packages(),
     # The following may be untrue and needs to be checked!
     classifiers=[
