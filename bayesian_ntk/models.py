@@ -7,10 +7,11 @@ def homoscedastic_model(
     b_std,
     width,
     depth,
+    activation,
     parameterization
 ):
 
-    act = stax.Erf
+    act = activation_fn(activation)
     layers_list = [Dense(width, W_std, b_std, parameterization)]
 
     def layer_block():
@@ -27,3 +28,9 @@ def homoscedastic_model(
     apply_fn = jit(apply_fn)
 
     return init_fn, apply_fn, kernel_fn
+
+def activation_fn(act):
+    if act == 'erf':
+        return stax.Erf
+    elif act == 'relu':
+        return stax.Relu
