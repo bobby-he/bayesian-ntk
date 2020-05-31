@@ -44,12 +44,3 @@ def get_model_config(name, _cfg_dct=_model_configs):
 
 get_train_config = partial(get_model_config, _cfg_dct=_train_configs)
 get_data_config = partial(get_model_config, _cfg_dct=_data_configs)
-
-method_input_dict = {
-    "Deep ensemble": 'deep_ensemble',
-    "RP-param": 'rand_prior_param',
-    "RP-fn": 'rand_prior_fn',
-    "NTKGP-param": 'ntkgp_param',
-    "NTKGP-fn": 'ntkgp_fn',
-    "NTKGP-lin": 'ntkgp_lin'
-}

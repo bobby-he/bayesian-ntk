@@ -2,6 +2,15 @@ from jax import jvp
 import jax.numpy as np
 from jax.tree_util import tree_flatten, tree_unflatten
 
+method_input_dct = {
+    "Deep ensemble": 'deep_ensemble',
+    "RP-param": 'rand_prior_param',
+    "RP-fn": 'rand_prior_fn',
+    "NTKGP-param": 'ntkgp_param',
+    "NTKGP-fn": 'ntkgp_fn',
+    "NTKGP-lin": 'ntkgp_lin'
+}
+
 def new_predict_fn(predict,
                    train_method,
                    params_0,
