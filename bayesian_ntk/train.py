@@ -19,7 +19,7 @@ def train_model(
     b_std,
     width,
     depth,
-    ):
+):
     """Train a single baselearner model.
 
     Args:
@@ -32,10 +32,13 @@ def train_model(
         learning_rate (float): Learning rate
         training_steps (int): Number of gradient updates
         noise_scale (float): output noise standard deviation
-        W_std (float): Weight variance
-        b_std (float): Bias variance
+        W_std (float): Weight standard deviation
+        b_std (float): Bias standard deviation
         width (int): Hidden layer width
         depth (int): Number of hidden layers
+
+    Returns:
+        Model predictions on `test_data`
     """
 
     train_losses = []
@@ -45,13 +48,14 @@ def train_model(
     opt_update = jit(opt_update)
 
     # get model
-    init_fn, predict_fn, _ = homoscedastic_model(W_std,
-                                                 b_std,
-                                                 width,
-                                                 depth,
-                                                 activation,
-                                                 parameterization
-                                                 )
+    init_fn, predict_fn, _ = homoscedastic_model(
+         W_std,
+         b_std,
+         width,
+         depth,
+         activation,
+         parameterization
+     )
 
     # initialise initial parameters
     _, init_params = init_fn(key, (-1, 1))
@@ -63,20 +67,20 @@ def train_model(
 
     # define `train_method` dependent modified forward pass and regularisation
     new_predict_fn = fetch_new_predict_fn(
-                        predict_fn,
-                        train_method,
-                        init_params,
-                        aux_params
-                        )
+        predict_fn,
+        train_method,
+        init_params,
+        aux_params
+    )
     new_predict_fn = jit(new_predict_fn)
 
     reg_fn = fetch_regularisation_fn(
-                        train_method,
-                        init_params,
-                        parameterization,
-                        W_std,
-                        b_std
-                        )
+        train_method,
+        init_params,
+        parameterization,
+        W_std,
+        b_std
+    )
 
     # define loss function
     def mse_loss(params, x, y):

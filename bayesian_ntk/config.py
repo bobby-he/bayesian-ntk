@@ -8,8 +8,8 @@ ENSEMBLE_SIZE = 20
 
 _model_configs = {
     "default": dict(
-        W_std = 1.5,                # Weight variance
-        b_std = 0.05,               # Bias variance
+        W_std = 1.5,                # Weight standard deviation
+        b_std = 0.05,               # Bias standard deviation
         width = 512,                # Hidden layer width
         depth = 2,                  # Number of hidden layers
         activation = 'erf'          # Activation function

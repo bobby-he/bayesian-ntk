@@ -13,8 +13,8 @@ def homoscedastic_model(
     """Construct fully connected NN model.
 
     Args:
-        W_std (float): Weight variance.
-        b_std (float): Bias variance.
+        W_std (float): Weight standard deviation.
+        b_std (float): Bias standard deviation.
         width (int): Hidden layer width.
         depth (int): Number of hidden layers.
         activation (string): Activation function string, 'erf' or 'relu'.
