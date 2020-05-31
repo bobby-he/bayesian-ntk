@@ -113,6 +113,7 @@ def _posterior_std(op, g_td, g_tt, diag_reg):
 
 def _arr_is_on_cpu(x):
   # Utility function from neural_tangents
+  if hasattr(x, 'device_buffer'):
     return 'CPU' in str(x.device_buffer.device())
 
   if isinstance(x, np.ndarray):
