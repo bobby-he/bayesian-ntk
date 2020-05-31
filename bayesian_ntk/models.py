@@ -10,18 +10,30 @@ def homoscedastic_model(
     activation,
     parameterization
 ):
+    """Construct fully connected NN model.
 
+    Args:
+        W_std (float): Weight variance.
+        b_std (float): Bias variance.
+        width (int): Hidden layer width.
+        depth (int): Number of hidden layers.
+        activation (string): Activation function string, 'erf' or 'relu'.
+        parameterization (string): Parameterization string, 'ntk' or 'standard'.
+
+    Returns:
+        `(init_fn, apply_fn, kernel_fn)`
+    """
     act = activation_fn(activation)
+
     layers_list = [Dense(width, W_std, b_std, parameterization)]
 
     def layer_block():
         return stax.serial(act(), Dense(width, W_std, b_std, parameterization))
 
-    for i in range(depth - 1):
+    for _ in range(depth - 1):
         layers_list += [layer_block()]
 
-    layers_list += [act()]
-    layers_list += [Dense(1, W_std, b_std, parameterization)]
+    layers_list += [act(), Dense(1, W_std, b_std, parameterization)]
 
     init_fn, apply_fn, kernel_fn = stax.serial(*layers_list)
 

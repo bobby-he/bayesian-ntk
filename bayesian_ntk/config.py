@@ -1,35 +1,34 @@
+"""
+Default hyperparameter values
+"""
 from functools import partial
-import collections
-from types import SimpleNamespace
 
 NOISE_SCALE = 1e-1
 ENSEMBLE_SIZE = 20
 
-Gaussian = collections.namedtuple('Gaussian', 'mean standard_deviation')
-
 _model_configs = {
     "default": dict(
-        W_std = 1.5,
-        b_std = 0.05,
-        width = 512,
-        depth = 2,
-        activation = 'erf'
+        W_std = 1.5,                # Weight variance
+        b_std = 0.05,               # Bias variance
+        width = 512,                # Hidden layer width
+        depth = 2,                  # Number of hidden layers
+        activation = 'erf'          # Activation function
     )
 }
 
 _train_configs = {
     "default": dict(
-        learning_rate = 1e-3,
-        training_steps = 50000,
-        noise_scale = NOISE_SCALE,
+        learning_rate = 1e-3,       # Learning rate
+        training_steps = 50000,     # Number of gradient updates
+        noise_scale = NOISE_SCALE,  # Observation noise standard deviation
         **_model_configs["default"]
     )
 }
 
 _data_configs = {
     "default": dict(
-        train_points = 20,
-        test_points = 50
+        train_points = 20,          # Training set size
+        test_points = 50            # Test set size
     )
 }
 
