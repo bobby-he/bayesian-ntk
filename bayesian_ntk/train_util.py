@@ -54,8 +54,7 @@ def fetch_new_predict_fn(
             before_cutoff_coef = 1.,
             after_cutoff_coef = 0.
         )
-        new_predict_fn = lambda params, x:
-            predict_fn(params, x) + init_jvp_fn(aux_params_zeroed, x)
+        new_predict_fn = lambda params, x: predict_fn(params, x) + init_jvp_fn(aux_params_zeroed, x)
 
     elif train_method == 'ntkgp_fn':
         # reweighted_aux_params multiplies all but last layer parameters by sqrt(2)_
@@ -65,12 +64,10 @@ def fetch_new_predict_fn(
             before_cutoff_coef = np.sqrt(2),
             after_cutoff_coef = 1.
         )
-        new_predict_fn = lambda params, x:
-            predict_fn(params, x) + init_jvp_fn(reweighted_aux_params, x)
+        new_predict_fn = lambda params, x: predict_fn(params, x) + init_jvp_fn(reweighted_aux_params, x)
 
     elif train_method == 'rand_prior_fn':
-        new_predict_fn = lambda params, x:
-            predict_fn(params, x) + predict_fn(aux_params, x)
+        new_predict_fn = lambda params, x: predict_fn(params, x) + predict_fn(aux_params, x)
 
     else:
         raise ValueError('Train method {} not found.'.format(train_method))
