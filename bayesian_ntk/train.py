@@ -3,7 +3,7 @@ from jax import random
 from jax import jit, grad
 from jax.experimental import optimizers
 from .models import homoscedastic_model
-from .train_util import fetch_new_predict_fn, fetch_regularisation_fn
+from .train_utils import fetch_new_predict_fn, fetch_regularisation_fn
 
 def train_model(
     key,
