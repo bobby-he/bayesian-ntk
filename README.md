@@ -1,6 +1,9 @@
 # Bayesian Deep Ensembles via the Neural Tangent Kernel
 Repository, `bayesian-ntk`, to accompany NeurIPS 2020 submission 'Bayesian Deep Ensembles via the Neural Tangent Kernel'
 
+![Image of toy example]
+(https://github.com/bobby-he/bayesian-ntk/blob/master/plots/toy_1d_plot.pdf)
+
 ## Requirements
 
 To install requirements:
