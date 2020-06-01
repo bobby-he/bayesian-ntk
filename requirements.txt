@@ -1,6 +1,7 @@
 jax
 jaxlib
 neural-tangents
+dataclasses; python_version < '3.7'
 
 # for notebooks
 matplotlib
