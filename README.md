@@ -14,5 +14,5 @@ The functionality of `bayesian-ntk` is explained in our notebook, which you can 
 The notebook also provides a walkthrough to reproduce Figure 1, below, from our submission.
 
 <p align="center">
-  <img align="middle src="./plots/toy_1d_plot.pdf" width="666" />
+  <img align="middle" src="./plots/toy_1d_plot.pdf" width="666" />
 </p>                                                              
