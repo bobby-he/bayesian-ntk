@@ -4,7 +4,7 @@
 ## Requirements
 
 To install requirements:
-```aerygtfgfgdfg
+```setup
 pip install -r requirements.txt
 ```
 
