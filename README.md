@@ -1,8 +1,9 @@
 # Bayesian Deep Ensembles via the Neural Tangent Kernel
 Repository, `bayesian-ntk`, to accompany NeurIPS 2020 submission 'Bayesian Deep Ensembles via the Neural Tangent Kernel'
 
-![Image of toy example]
-(https://github.com/bobby-he/bayesian-ntk/blob/master/plots/toy_1d_plot.png)
+<p align="center">
+  <img align="middle" src="./plots/toy_1d_plot.png" width="666" />
+</p>            
 
 ## Requirements
 
@@ -14,8 +15,6 @@ pip install -r requirements.txt
 ## Colab Notebook
 The functionality of `bayesian-ntk` is explained in our notebook, which you can [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bobby-he/bayesian-ntk/blob/master/toy_1d_example.ipynb) here.
 
-The notebook also provides a walkthrough to reproduce Figure 1, below, from our submission.
+The notebook also provides a walkthrough to reproduce Figure 1, above, from our submission.
 
-<p align="center">
-  <img align="middle" src="./plots/toy_1d_plot.png" width="666" />
-</p>                                                              
+                                                  
