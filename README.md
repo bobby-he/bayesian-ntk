@@ -13,4 +13,4 @@ pip install -r requirements.txt
 ```
 
 ## Colab Notebook
-The functionality of `bayesian-ntk` is explained in our notebook, which also provides a walkthrough to reproduce Figure 1, above, from our submission.
+The functionality of `bayesian-ntk` is explained in our notebook `supplementary_notebook.ipynb`, which also provides a walkthrough to reproduce Figure 1, above, from our submission.
