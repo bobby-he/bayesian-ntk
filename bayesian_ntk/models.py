@@ -10,7 +10,8 @@ def homoscedastic_model(
     activation,
     parameterization
 ):
-    """Construct fully connected NN model.
+    """Construct fully connected NN model and infinite width NTK & NNGP kernel
+       function.
 
     Args:
         W_std (float): Weight standard deviation.

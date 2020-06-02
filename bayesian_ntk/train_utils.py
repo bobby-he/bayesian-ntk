@@ -29,8 +29,8 @@ def fetch_new_predict_fn(
                                pytree (default 2)
 
             Default `reweight_cutoff = 2` because the last 2 leaves of params
-            pytree are final layer weight and bias parameters in a NN with
-            homoscedastic readout final layer.
+            pytree are final layer weight and bias parameters in a homoscedastic
+            model with readout final layer.
 
     Returns:
         `new_predict_fn`: Modified forward pass function
@@ -135,13 +135,13 @@ def reweight_params(
 
     Args:
         params (pytree): Parameter set to reweight
-        reweight_cutoff (int): Cutoff int for reweighting leaves of `params`
-                               pytree (default 0)
+        reweight_cutoff (int):      Cutoff int for reweighting leaves of `params`
+                                    pytree (default 0)
         before_cutoff_coef (float): Coefficient to multiply all `params` pytree
                                     leaves apart from the last `reweight_cutoff`
                                     leaves (default 1.)
-        after_cutoff_coef (float): Coefficient to multiply last `reweight_cutoff`
-                                   leaves in `params` pytree by. (default 0.)
+        after_cutoff_coef (float):  Coefficient to multiply last `reweight_cutoff`
+                                    leaves in `params` pytree by. (default 0.)
 
     Returns:
         reweighted_params (pytree): Reweighted version of `params`

@@ -41,9 +41,6 @@ def train_model(
         Model predictions on `test_data`
     """
 
-    train_losses = []
-    test_losses = []
-
     opt_init, opt_update, get_params = optimizers.sgd(learning_rate)
     opt_update = jit(opt_update)
 

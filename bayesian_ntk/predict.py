@@ -11,8 +11,8 @@ key differences to neural_tangents.predict (as of 31st May 2020):
 2)  The arg `diag_reg` is directly the regularization strength for
     `predict.__add_diagonal_regularizer`. This allows modelling of output noise.
 
-3) `predict.gp_inference` returns test standard deviations instead of covariance
-    matrix. Mean and standard deviation outputs are flattened.
+3) `predict.gp_inference` returns test predictive standard deviations instead of
+    covariance matrix. Mean and standard deviation outputs are flattened.
 """
 
 from jax.api import jit
@@ -103,13 +103,15 @@ def _mean_prediction(op, g_td, y_train):
   mean_pred = np.dot(g_td, mean_pred)
   return ufl(mean_pred)
 
-def _posterior_std(op, g_td, g_tt, diag_reg):
-  """Computes the test posterior standard deviation for nngp or ntkgp."""
+def _posterior_std(op, g_td, g_tt, output_noise_var):
+  """Computes the test posterior standard deviation (with output noise) for nngp
+     or ntkgp.
+  """
   # op(vec) = (K + diag_reg * I)^{-1} @ vec for nngp or
   # op(vec) = (\Theta + diag_reg * I)^{-1} @ vec for ntkgp
   cov = op(np.transpose(g_td))
-  var = np.diag(g_tt - np.dot(g_td, cov)) + diag_reg
-  return np.sqrt(var)
+  pred_var = np.diag(g_tt - np.dot(g_td, cov)) + output_noise_var
+  return np.sqrt(pred_var)
 
 def _arr_is_on_cpu(x):
   # Utility function from neural_tangents
@@ -133,7 +135,7 @@ def gp_inference(kernel_fn,
                  get,
                  diag_reg=0.,
                  compute_cov=True):
-  """Compute the mean and variance of the `posterior` of NNGP and NTKGP.
+  """Compute the mean and standard deviation of the `posterior` of NNGP & NTKGP.
 
   Args:
     kernel_fn: A kernel function that computes NNGP and NTK.
@@ -164,7 +166,7 @@ def _gp_inference_mat(kdd,
                       y_train,
                       get,
                       diag_reg=0.):
-  """Compute the mean and variance of the `posterior` of NNGP and NTKGP.
+  """Compute the mean and standard deviation of the `posterior` of NNGP & NTKGP.
 
   Args:
     kdd: A train-train `Kernel` namedtuple.
@@ -177,8 +179,8 @@ def _gp_inference_mat(kdd,
     diag_reg: A float, representing the strength of the regularization.
 
   Returns:
-    Either a Gaussian(`mean`, `variance`) namedtuple or `mean` of the GP
-    posterior.
+    Either a Gaussian(`mean`, `standard deviation`) namedtuple or `mean` of the
+    GP posterior.
   """
   out = {}
   if get is None:
