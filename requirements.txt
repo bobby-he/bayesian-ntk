@@ -1,5 +1,5 @@
-jax==0.1.70
 jaxlib==0.1.47
+jax==0.1.70
 neural-tangents==0.2.0
 dataclasses; python_version < '3.7'
 
