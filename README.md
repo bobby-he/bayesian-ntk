@@ -2,7 +2,7 @@
 Repository, `bayesian-ntk`, to accompany the paper [Bayesian Deep Ensembles via the Neural Tangent Kernel](https://arxiv.org/abs/2007.05864).
 
 <p align="center">
-  <img align="middle" src="./plots/toy_1d_plot.png" width="666" />
+  <img align="middle" src="./plots/bntk_thumbnail.pdf" width="666" />
 </p>            
 
 ## Requirements
